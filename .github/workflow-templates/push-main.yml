@@ -1,0 +1,27 @@
+name: Rebuild
+
+# Our autofixers are all put together in a single job (called autofix), to
+# reduce churn
+
+on:
+  push:
+    branches:
+    - master
+
+include:
+  - _setup.yml
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    if: github.actor != 'khan-actions-bot'
+
+    steps:
+    - name: Rebuild our "dist" file
+      setup: yarn
+      run: yarn run dist
+
+    - uses: Khan/autofix-commit-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}
+

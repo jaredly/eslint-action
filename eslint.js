@@ -108,3 +108,5 @@ run().catch(err => {
     console.error(err); // flow-uncovered-line
     process.exit(1);
 });
+
+console.log('bad news');

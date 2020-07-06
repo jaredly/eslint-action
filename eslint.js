@@ -109,4 +109,4 @@ run().catch(err => {
     process.exit(1);
 });
 
-console.log('bad news');
+console.log('bad news folks');
